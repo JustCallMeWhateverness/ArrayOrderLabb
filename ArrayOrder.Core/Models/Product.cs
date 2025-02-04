@@ -26,6 +26,10 @@ public class Product
         {
             throw new InvalidOperationException("Invalid amount, exceeds amount in stock");
         }
+        else if (isDelivery == true && amount > 10000)
+        {
+            throw new InvalidOperationException("Invalid amount, exceeded allowed amount to purchase.");
+        }
 
     }
 
