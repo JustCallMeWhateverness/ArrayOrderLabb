@@ -18,7 +18,12 @@ public class Product
 
     public void UpdateStock(int amount, bool isDelivery)
     {
-        // TODO: Implement stock update
+        if (amount <= 0)
+        {
+            throw new ArgumentException("Invalid amount, needs to be more than zero");
+        }
+
+
     }
 
     public override string ToString()

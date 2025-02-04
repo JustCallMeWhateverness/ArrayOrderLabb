@@ -66,8 +66,12 @@ namespace ArrayOrder.Test
         public void TestUpdateStock_Delivery_ExceedsLimit_ThrowsException()
         {
             // Arrange
+            var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
 
             // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => product.UpdateStock(6, false));
+
+
         }
 
         // TODO: Add more tests
