@@ -63,13 +63,26 @@ namespace ArrayOrder.Test
 
 
         [Fact]
-        public void TestUpdateStock_Delivery_ExceedsLimit_ThrowsException()
+        public void TestUpdateStock_Sell_ExceedsLimit_ThrowsException()
         {
             // Arrange
             var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => product.UpdateStock(6, false));
+
+
+        }
+
+        
+        [Fact]
+        public void TestUpdateStock_Delivery_ExceedsLimit_ThrowsException()
+        {
+            // Arrange
+            var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => product.UpdateStock(10001, true));
 
 
         }
