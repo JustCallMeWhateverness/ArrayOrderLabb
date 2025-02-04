@@ -20,12 +20,47 @@ namespace ArrayOrder.Test
         }
 
         [Fact]
-        public void TestUpdateStock_Delivery_InvalidAmount_ThrowsException()
+        public void TestUpdateStock_Delivery_AmountZero_ThrowsException()
         {
             // Arrange
+             var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
+
 
             // Act & Assert
+            Assert.Throws<ArgumentException>(()  => product.UpdateStock(0, true));
         }
+        [Fact]
+        public void TestUpdateStock_Delivery_AmountLessThenZero_ThrowsException()
+        {
+            // Arrange
+             var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
+
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(()  => product.UpdateStock(-10, true));
+        }
+
+         [Fact]
+        public void TestUpdateStock_Sell_AmountZero_ThrowsException()
+        {
+            // Arrange
+             var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
+
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(()  => product.UpdateStock(0, false));
+        }
+        [Fact]
+        public void TestUpdateStock_Sell_AmountLessThenZero_ThrowsException()
+        {
+            // Arrange
+             var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
+
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(()  => product.UpdateStock(-10, false));
+        }
+
 
         [Fact]
         public void TestUpdateStock_Delivery_ExceedsLimit_ThrowsException()
