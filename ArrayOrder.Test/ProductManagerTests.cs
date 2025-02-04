@@ -67,7 +67,7 @@ namespace ArrayOrder.Test
             var productArray = productManager.GetProducts();
 
             // Assert
-            Assert.Contains(product, productManager);
+            Assert.Contains(product, productArray);
         }
     }
 }

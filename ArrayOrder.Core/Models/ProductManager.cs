@@ -19,22 +19,40 @@ namespace ArrayOrder.Core.Models
 
         public void AddProduct(Product product)
         {
+            // Are there any empty spots available?
+            bool nullFound = false;
+            int nullIndex = 0;
+            do
+            {
+                if (_products[nullIndex] == null)
+                {
+                    nullFound = true;
+                }
+                else
+                {
+                    nullIndex++;
+                }
+            }while (!nullFound ||  nullIndex < _products.Length);
 
-            // private int _count;
-            // private int initial_Capacity;
-            // TODO: Add product to array
-
-            // check if _product contains null. Save all places with null in a array or similar.
-            // make other method for checking for null in a thing.   
-            // if contains null, take the first place with null and put the product there
-            
-            // if not: 
-            // create new array size _products.length*2
-            // put all the things into it with loop
-            // add the last thing at last index.
+            // If there are empty spots available, use them!
+            if (nullFound)
+            {
+                _products[nullIndex] = product;
+            }
+            else
+            {
+                // If there aren't any spots available, make some more :) 
+                _products = CloneAndIncreaseSizeOfArray();
+                _products[_products.Length] = product;
+            }
             
         }
 
+        private Product[] CloneAndIncreaseSizeOfArray()
+        {
+            var longerArray = new Product[_products.Length * 2];
+            return longerArray = (Product[])_products.Clone();
+        }
         public Product[] SortByPrice(bool ascending = true)
         {
             // TODO: Implement sorting
@@ -70,6 +88,11 @@ namespace ArrayOrder.Core.Models
             // TODO: Implement filtering
             return (Product[])_products.Clone();
 
+        }
+
+        public Product[] GetProducts()
+        {
+            return _products;
         }
     }
 }
