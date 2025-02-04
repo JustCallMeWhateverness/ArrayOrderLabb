@@ -4,7 +4,7 @@ namespace ArrayOrder.Core.Models
 {
     public class ProductManager
     {
-        private Product[] _products; 
+        private Product[] _products;
         private int _count;
 
         public ProductManager(int initialCapacity)
@@ -19,39 +19,22 @@ namespace ArrayOrder.Core.Models
 
         public void AddProduct(Product product)
         {
-            // Are there any empty spots available?
-            bool nullFound = false;
-            int nullIndex = 0;
-            do
+            if (_count >= _products.Length)
             {
-                if (_products[nullIndex] == null)
-                {
-                    nullFound = true;
-                }
-                else
-                {
-                    nullIndex++;
-                }
-            }while (!nullFound ||  nullIndex < _products.Length);
-
-            // If there are empty spots available, use them!
-            if (nullFound)
-            {
-                _products[nullIndex] = product;
-            }
-            else
-            {
-                // If there aren't any spots available, make some more :) 
                 _products = CloneAndIncreaseSizeOfArray();
-                _products[_products.Length] = product;
             }
-            
+            _products[_count] = product;
+
+            _count++;
         }
 
         private Product[] CloneAndIncreaseSizeOfArray()
         {
-            var longerArray = new Product[_products.Length * 2];
-            return longerArray = (Product[])_products.Clone();
+            var length = _products.Length * 2;
+            var longerArray = new Product[length];
+            _products.CopyTo(longerArray, 0);
+
+            return longerArray;
         }
         public Product[] SortByPrice(bool ascending = true)
         {
