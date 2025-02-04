@@ -55,5 +55,19 @@ namespace ArrayOrder.Test
         }
 
         // TODO: Add more tests
+        [Fact]
+        public void AddProduct()
+        {
+            // Arrange
+            var productManager = CreateProductManagerWithSampleData();
+
+            // Act
+            var product = new Product(6, "Telefonkatalog", "Böcker", 5, 1000);
+            productManager.AddProduct(product);
+            var productArray = productManager.GetProducts();
+
+            // Assert
+            Assert.Contains(product, productManager);
+        }
     }
 }
