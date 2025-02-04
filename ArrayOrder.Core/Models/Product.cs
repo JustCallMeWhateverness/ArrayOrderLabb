@@ -22,7 +22,10 @@ public class Product
         {
             throw new ArgumentException("Invalid amount, needs to be more than zero");
         }
-
+        else if(amount > ILager && isDelivery == false)
+        {
+            throw new InvalidOperationException("Invalid amount, exceeds amount in stock");
+        }
 
     }
 
