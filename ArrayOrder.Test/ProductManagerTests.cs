@@ -37,11 +37,18 @@ namespace ArrayOrder.Test
         [Fact]
         public void TestSortByPrice_Descending()
         {
-            // Arrange
+             // Arrange
+            var manager = CreateProductManagerWithSampleData();
 
             // Act
+            var sorted = manager.SortByPrice(true);
 
             // Assert
+            Assert.Equal(150, sorted[0].Pris);
+            Assert.Equal(200, sorted[1].Pris);
+            Assert.Equal(800, sorted[2].Pris);
+            Assert.Equal(5000, sorted[3].Pris);
+            Assert.Equal(15000, sorted[4].Pris);
         }
 
         [Fact]
@@ -56,7 +63,7 @@ namespace ArrayOrder.Test
 
         // TODO: Add more tests
         [Fact]
-        public void AddProduct()
+        public void ProductIsAddedWhenArrayIsFull()
         {
             // Arrange
             var productManager = CreateProductManagerWithSampleData();
@@ -68,6 +75,21 @@ namespace ArrayOrder.Test
 
             // Assert
             Assert.Contains(product, productArray);
+        }
+        [Fact]
+        public void ProductIsRemovedWhenExistsInArray()
+        {
+            // Arrange
+            var productManager = CreateProductManagerWithSampleData();
+            var product = new Product(1, "Laptop", "Elektronik", 15000, 5);
+
+            // Act
+            productManager.RemoveProduct(1);
+            
+            var productArray = productManager.GetProducts();
+
+            // Assert
+            Assert.DoesNotContain(product, productArray);
         }
     }
 }

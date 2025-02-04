@@ -4,7 +4,7 @@ namespace ArrayOrder.Core.Models
 {
     public class ProductManager
     {
-        private Product[] _products;
+        private Product?[] _products;
         private int _count;
 
         public ProductManager(int initialCapacity)
@@ -26,6 +26,24 @@ namespace ArrayOrder.Core.Models
             _products[_count] = product;
 
             _count++;
+        }
+
+        public void RemoveProduct(int id)
+        {
+            if(id > _count || id > _products.Length)
+            {
+                throw new ArgumentException("There no product with that id ");
+            }
+            int index = 0;
+            for (int i = 0;i< _products.Length;i++)
+            {
+                if(id==_products[i].Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            _products[index] = null;
         }
 
         private Product[] CloneAndIncreaseSizeOfArray()
