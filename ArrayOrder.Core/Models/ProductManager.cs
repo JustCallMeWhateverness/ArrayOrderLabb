@@ -4,7 +4,7 @@ namespace ArrayOrder.Core.Models
 {
     public class ProductManager
     {
-        private Product[] _products;
+        private Product[] _products; 
         private int _count;
 
         public ProductManager(int initialCapacity)
@@ -19,7 +19,20 @@ namespace ArrayOrder.Core.Models
 
         public void AddProduct(Product product)
         {
+
+            // private int _count;
+            // private int initial_Capacity;
             // TODO: Add product to array
+
+            // check if _product contains null. Save all places with null in a array or similar.
+            // make other method for checking for null in a thing.   
+            // if contains null, take the first place with null and put the product there
+            
+            // if not: 
+            // create new array size _products.length*2
+            // put all the things into it with loop
+            // add the last thing at last index.
+            
         }
 
         public Product[] SortByPrice(bool ascending = true)

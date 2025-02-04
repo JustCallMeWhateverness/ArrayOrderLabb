@@ -18,7 +18,18 @@ namespace ArrayOrder.Test
             // Assert
             Assert.Equal(15, product.ILager);
         }
+        [Fact]
+        public void TestUpdateStock_Delivery_DecreasesStock()
+        {
+            // Arrange
+            var product = new Product(1, "Laptop", "Elektronik", 15000, 10);
 
+            // Act
+            product.UpdateStock(5, false);
+
+            // Assert
+            Assert.Equal(5, product.ILager);
+        }
         [Fact]
         public void TestUpdateStock_Delivery_AmountZero_ThrowsException()
         {
